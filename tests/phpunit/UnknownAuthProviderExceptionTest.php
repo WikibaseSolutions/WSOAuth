@@ -6,7 +6,7 @@
  * @group Exceptions
  * @covers Exception\UnknownAuthProviderException
  */
-class UnknownAuthProviderExceptionTest extends PHPUnit\Framework\TestCase
+class UnknownAuthProviderExceptionTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
