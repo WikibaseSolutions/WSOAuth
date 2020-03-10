@@ -18,4 +18,9 @@
 	beStrictAboutTestSize="true"
 	stderr="true"
 	verbose="false">
+	<testsuites>
+		<testsuite name="AllTests">
+			<directory>.</directory>
+		</testsuite>
+	</testsuites>
 </phpunit>
