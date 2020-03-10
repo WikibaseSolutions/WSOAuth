@@ -41,12 +41,12 @@ interface AuthProvider
     public function logout(\User &$user);
 
     /**
-     * Get user info from session. Returns an empty array if the user has not been authenticated or false when the request failed or the user is not authorised.
+     * Get user info from session. Returns false when the request failed or the user is not authorised.
      *
      * @param $key string The consumer key set during login().
      * @param $secret string The consumer secret set during login().
      * @param string $errorMessage Message shown to the user when there is an error.
-     * @return boolean|array Returns an array with at least a 'name' when the user is authenticated, returns an empty array when the user is not authenticated or returns false when the user is not authorised or the authentication failed.
+     * @return boolean|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
      * @internal
      */
     public function getUser($key, $secret, &$errorMessage);

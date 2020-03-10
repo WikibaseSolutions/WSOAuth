@@ -68,18 +68,18 @@ class MediaWikiAuth implements \AuthProvider
     }
 
     /**
-     * Get user info from session. Returns an empty array if the user has not been authenticated or false when the request failed or the user is not authorised.
+     * Get user info from session. Returns false when the request failed or the user is not authorised.
      *
      * @param $key
      * @param $secret
      * @param string $errorMessage Message shown to the user when there is an error.
-     * @return boolean|array Returns an array with at least a 'name' when the user is authenticated, returns an empty array when the user is not authenticated or returns false when the user is not authorised or the authentication failed.
+     * @return boolean|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
      * @internal
      */
     public function getUser($key, $secret, &$errorMessage)
     {
         if (!isset($_GET['oauth_verifier'])) {
-            return [];
+            return false;
         }
 
         try {
