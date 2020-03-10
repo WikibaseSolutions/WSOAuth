@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/../../src/Exception/InvalidAuthProviderClassException.php';
+include_once __DIR__ . '/bootstrap.php';
 
 /**
  * Class InvalidAuthProviderClassExceptionTest

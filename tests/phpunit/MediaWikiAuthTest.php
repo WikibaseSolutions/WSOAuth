@@ -2,8 +2,6 @@
 
 require_once "IAuthProvider.php";
 
-include_once __DIR__ . '/../../src/AuthenticationProvider/MediaWikiAuth.php';
-
 /**
  * Class MediaWikiAuthTest
  *
