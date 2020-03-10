@@ -8,7 +8,7 @@ require_once "IAuthProvider.php";
  * @group AuthProviders
  * @covers AuthenticationProvider\MediaWikiAuth
  */
-class MediaWikiAuthTest extends PHPUnit_Framework_TestCase implements IAuthProvider
+class MediaWikiAuthTest extends PHPUnit\Framework\TestCase implements IAuthProvider
 {
     protected function setUp()
     {

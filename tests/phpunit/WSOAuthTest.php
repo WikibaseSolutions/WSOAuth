@@ -6,7 +6,7 @@
  * @group WSOAuthCore
  * @covers WSOAuth
  */
-class WSOAuthTest extends PHPUnit_Framework_TestCase
+class WSOAuthTest extends PHPUnit\Framework\TestCase
 {
     protected function setUp()
     {
