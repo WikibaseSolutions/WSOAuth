@@ -1,5 +1,7 @@
 <?php
 
+include_once __DIR__ . '/../../src/AuthProvider.php';
+
 /**
  * Class AuthProviderTest
  *
