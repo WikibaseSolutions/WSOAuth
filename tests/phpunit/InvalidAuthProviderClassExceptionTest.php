@@ -6,7 +6,7 @@
  * @group Exceptions
  * @covers Exception\InvalidAuthProviderClassException
  */
-class InvalidAuthProviderClassExceptionTest extends PHPUnit_Framework_TestCase
+class InvalidAuthProviderClassExceptionTest extends PHPUnit\Framework\TestCase
 {
     protected function setUp()
     {

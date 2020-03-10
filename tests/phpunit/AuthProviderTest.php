@@ -6,7 +6,7 @@
  * @group AuthProvider
  * @covers AuthProvider
  */
-class AuthProviderTest extends PHPUnit_Framework_TestCase
+class AuthProviderTest extends PHPUnit\Framework\TestCase
 {
     protected function setUp()
     {
