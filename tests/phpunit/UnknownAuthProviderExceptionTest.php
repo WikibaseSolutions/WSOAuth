@@ -6,7 +6,7 @@
  * @group Exceptions
  * @covers Exception\UnknownAuthProviderException
  */
-class UnknownAuthProviderExceptionTest extends MediaWikiTestCase
+class UnknownAuthProviderExceptionTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {

@@ -6,7 +6,7 @@
  * @group Exceptions
  * @covers Exception\InvalidAuthProviderClassException
  */
-class InvalidAuthProviderClassExceptionTest extends MediaWikiTestCase
+class InvalidAuthProviderClassExceptionTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {

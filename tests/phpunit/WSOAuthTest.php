@@ -6,7 +6,7 @@
  * @group WSOAuthCore
  * @covers WSOAuth
  */
-class WSOAuthTest extends MediaWikiTestCase
+class WSOAuthTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
