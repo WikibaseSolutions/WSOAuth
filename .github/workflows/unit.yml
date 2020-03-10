@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: php-actions/composer@v1
-    - uses: php-actions/phpunit@v1
+    - uses: 26/phpunit@master
       with:
         config: tests/phpunit/phpunit.xml
         memory: 256M
