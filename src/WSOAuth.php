@@ -61,7 +61,7 @@ class WSOAuth extends AuthProviderFramework
 
             // Request failed or user is not authorised.
             if ($user_info === false) {
-                $errorMessage = wfMessage('wsoauth-authentication-failure')->plain();
+                $errorMessage = !empty($errorMessage) ? $errorMessage : wfMessage('wsoauth-authentication-failure')->plain();
                 return false;
             }
 
