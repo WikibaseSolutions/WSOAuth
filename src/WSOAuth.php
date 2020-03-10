@@ -82,7 +82,12 @@ class WSOAuth extends AuthProviderFramework
             return true;
         }
 
-        $this->auth_provider->login($key, $secret, $auth_url);
+        $result = $this->auth_provider->login($key, $secret, $auth_url);
+
+        if ($result === false || empty($key) || empty($secret) || empty($auth_url)) {
+            $errorMessage = wfMessage('wsoauth-initiate-login-failure')->plain();
+            return false;
+        }
 
         $this->setSessionVariable('request_key', $key);
         $this->setSessionVariable('request_secret', $secret);

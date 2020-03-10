@@ -19,5 +19,6 @@
   "wsoauth-invalid-username": "Message shown to the user when the OAuth provider returns an invalid username.",
   "wsoauth-unknown-auth-provider-class-exception-message": "Exception message shown when the auth provider class was not loaded or found.",
   "wsoauth-unknown-auth-provider-exception-message": "Exception message shown when the auth provider was not found.",
-  "wsoauth-invalid-auth-provider-class-exception-message": "Exception message shown when the auth provider class does not implement AuthProvider."
+  "wsoauth-invalid-auth-provider-class-exception-message": "Exception message shown when the auth provider class does not implement AuthProvider.",
+  "wsoauth-initiate-login-failure": "Message shown to the user when the communication to the OAuth-provider could not be initialised."
 }

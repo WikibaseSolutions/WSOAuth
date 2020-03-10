@@ -19,5 +19,6 @@
   "wsoauth-invalid-username": "Username provided by the OAuth provider is not valid.",
   "wsoauth-unknown-auth-provider-class-exception-message": "OAuth provider class not loaded or not found",
   "wsoauth-unknown-auth-provider-exception-message": "Unknown OAuth provider ($1)",
-  "wsoauth-invalid-auth-provider-class-exception-message": "The OAuth provider class does not implement AuthProvider"
+  "wsoauth-invalid-auth-provider-class-exception-message": "The OAuth provider class does not implement AuthProvider",
+  "wsoauth-initiate-login-failure": "Unable to initiate communication with OAuth provider."
 }

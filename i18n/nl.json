@@ -19,5 +19,6 @@
   "wsoauth-invalid-username": "Gebruikersnaam verstrekt door de OAuth-provider is niet geldig.",
   "wsoauth-unknown-auth-provider-class-exception-message": "OAuth-provider class niet gevonden of geladen",
   "wsoauth-unknown-auth-provider-exception-message": "Onbekende OAuth-provider ($1)",
-  "wsoauth-invalid-auth-provider-class-exception-message": "De OAuth-provider class is geen implementatie van AuthProvider"
+  "wsoauth-invalid-auth-provider-class-exception-message": "De OAuth-provider class is geen implementatie van AuthProvider",
+  "wsoauth-initiate-login-failure": "Kan communicatie met OAuth-provider niet starten."
 }
