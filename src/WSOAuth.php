@@ -58,9 +58,10 @@ class WSOAuth extends AuthProviderFramework
             $this->removeSessionVariable("request_secret");
 
             $user_info = $this->auth_provider->getUser($key, $secret, $errorMessage);
+            $hook = Hooks::run('WSOAuthAfterGetUser', [&$user_info, &$errorMessage]);
 
             // Request failed or user is not authorised.
-            if ($user_info === false) {
+            if ($user_info === false || $hook === false) {
                 $errorMessage = !empty($errorMessage) ? $errorMessage : wfMessage('wsoauth-authentication-failure')->plain();
                 return false;
             }
@@ -105,6 +106,8 @@ class WSOAuth extends AuthProviderFramework
      */
     public function deauthenticate(User &$user)
     {
+        Hooks::run('WSOAuthBeforeLogout', [&$user]);
+
         $this->auth_provider->logout($user);
     }
 
