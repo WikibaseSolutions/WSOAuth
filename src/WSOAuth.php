@@ -46,6 +46,8 @@ class WSOAuth extends AuthProviderFramework
      * @param $email
      * @param $errorMessage
      * @return bool
+     * @throws FatalError
+     * @throws MWException
      * @internal
      */
     public function authenticate(&$id, &$username, &$realname, &$email, &$errorMessage)
@@ -66,6 +68,8 @@ class WSOAuth extends AuthProviderFramework
                 return false;
             }
 
+            $user_info['name'] = ucfirst($user_info['name']);
+
             if (!isset($user_info['name']) || !User::isValidUserName($user_info['name'])) {
                 $errorMessage = wfMessage('wsoauth-invalid-username')->plain();
                 return false;
@@ -85,7 +89,7 @@ class WSOAuth extends AuthProviderFramework
 
         $result = $this->auth_provider->login($key, $secret, $auth_url);
 
-        if ($result === false || empty($key) || empty($secret) || empty($auth_url)) {
+        if ($result === false || empty($auth_url)) {
             $errorMessage = wfMessage('wsoauth-initiate-login-failure')->plain();
             return false;
         }
@@ -102,6 +106,8 @@ class WSOAuth extends AuthProviderFramework
     /**
      * @param User $user
      * @return void
+     * @throws FatalError
+     * @throws MWException
      * @internal
      */
     public function deauthenticate(User &$user)
@@ -134,7 +140,7 @@ class WSOAuth extends AuthProviderFramework
         $auth_providers = array_merge(WSOAuth::DEFAULT_AUTH_PROVIDERS, (array)$GLOBALS['wgOAuthCustomAuthProviders']);
         $auth_provider = $GLOBALS['wgOAuthAuthProvider'];
 
-        if (!in_array($auth_provider, array_keys($auth_providers))) {
+        if (!isset($auth_providers[$auth_provider])) {
             throw new Exception\UnknownAuthProviderException(wfMessage('wsoauth-unknown-auth-provider-exception-message')->params($auth_provider)->plain());
         }
 

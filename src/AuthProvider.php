@@ -23,9 +23,9 @@ interface AuthProvider
     /**
      * Log in the user through the external OAuth provider.
      *
-     * @param $key string The consumer key returned by the OAuth provider.
-     * @param $secret string The consumer secret returned by the OAuth provider.
-     * @param $auth_url string The URL the user must be redirected to.
+     * @param $key string The consumer key returned by the OAuth provider. May be left empty.
+     * @param $secret string The consumer secret returned by the OAuth provider. May be left empty.
+     * @param $auth_url string The URL the user must be redirected to. Must not be left empty.
      * @return boolean Returns true on successful login, false otherwise.
      * @internal
      */
