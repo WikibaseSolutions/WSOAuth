@@ -166,16 +166,20 @@ class WSOAuth extends AuthProviderFramework
      */
     public static function onPluggableAuthPopulateGroups(User $user)
     {
-        Hooks::run('WSOAuthBeforeAutoPopulateGroups', [&$user]);
+        $result = Hooks::run('WSOAuthBeforeAutoPopulateGroups', [&$user]);
 
-        if(!isset($GLOBALS['wgOAuthAutoPopulateGroups'])) {
+        if ($result === false) {
+            return false;
+        }
+
+        if (!isset($GLOBALS['wgOAuthAutoPopulateGroups'])) {
             return false;
         }
 
         // Subtract the groups the user already has from the list of groups to populate.
         $populate_groups = array_diff((array)$GLOBALS['wgOAuthAutoPopulateGroups'], $user->getEffectiveGroups());
 
-        foreach($populate_groups as $populate_group) {
+        foreach ($populate_groups as $populate_group) {
             $user->addGroup($populate_group);
         }
 
