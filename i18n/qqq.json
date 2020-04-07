@@ -13,6 +13,7 @@
   "wsoauth-redirect-uri": "The description of the configuration parameter that defines the redirect URI to handle authentication.",
   "wsoauth-auth-providers-desc": "The description of the configuration parameter that defines the list of custom OAuth providers.",
   "wsoauth-auth-provider-desc": "The description of the configuration parameter that defines the used authentication provider.",
+  "wsoauth-auto-populate-groups-desc": "The description of the configuration parameter that defines the list of MediaWiki groups that get automatically assigned to the user after they are authenticated.",
   "wsoauth-pluggable-auth-button-label-message-desc": "The description of the configuration parameter that defines the name of the system message that gets shown on Special:UserLogin.",
   "wsoauth-pluggable-auth-button-label-message": "The value of the system message that gets shown on Special:UserLogin.",
   "wsoauth-authentication-failure": "Message shown to the user when the authentication failed or when they are not authorised for this wiki.",

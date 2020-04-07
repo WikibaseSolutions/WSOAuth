@@ -154,4 +154,31 @@ class WSOAuth extends AuthProviderFramework
 
         return new $auth_providers[$auth_provider]();
     }
+
+    /**
+     * Adds the user to the groups defined via $wgOAuthAutoPopulateGroups after authentication.
+     *
+     * @param User $user
+     * @return bool
+     * @throws FatalError
+     * @throws MWException
+     * @internal
+     */
+    public static function onPluggableAuthPopulateGroups(User $user)
+    {
+        Hooks::run('WSOAuthBeforeAutoPopulateGroups', [&$user]);
+
+        if(!isset($GLOBALS['wgOAuthAutoPopulateGroups'])) {
+            return false;
+        }
+
+        // Subtract the groups the user already has from the list of groups to populate.
+        $populate_groups = array_diff((array)$GLOBALS['wgOAuthAutoPopulateGroups'], $user->getEffectiveGroups());
+
+        foreach($populate_groups as $populate_group) {
+            $user->addGroup($populate_group);
+        }
+
+        return true;
+    }
 }

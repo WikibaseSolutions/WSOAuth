@@ -13,6 +13,7 @@
   "wsoauth-redirect-uri-desc": "The default callback URL to which the OAuth application returns after a successful authentication request.",
   "wsoauth-auth-providers-desc": "An array containing a list of custom OAuth providers together with their class name.",
   "wsoauth-auth-provider-desc": "The OAuth provider that the extension will use.",
+  "wsoauth-auto-populate-groups-desc": "An array containing a list of MediaWiki group names that must be automatically assigned to the user after they are authenticated.",
   "wsoauth-pluggable-auth-button-label-message-desc": "The name of the message that will be used for the label of the login button on the Special:UserLogin form.",
   "wsoauth-pluggable-auth-button-label-message": "Log in with OAuth",
   "wsoauth-authentication-failure": "Authentication failed (are you authorised for this wiki?).",
