@@ -20,7 +20,8 @@
 class WSOAuth extends AuthProviderFramework
 {
     const DEFAULT_AUTH_PROVIDERS = [
-        "mediawiki" => "AuthenticationProvider\MediaWikiAuth"
+        "mediawiki" => "AuthenticationProvider\MediaWikiAuth",
+        "facebook" => "AuthenticationProvider\FacebookAuth"
     ];
     /**
      * @var AuthProvider
