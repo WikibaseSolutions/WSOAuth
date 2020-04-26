@@ -27,6 +27,9 @@ class FacebookAuth implements \AuthProvider
      */
     private $provider;
 
+    /**
+     * FacebookAuth constructor.
+     */
     public function __construct()
     {
         $this->provider = new \League\OAuth2\Client\Provider\Facebook([
@@ -58,7 +61,6 @@ class FacebookAuth implements \AuthProvider
 
     /**
      * @inheritDoc
-     * @throws \League\OAuth2\Client\Provider\Exception\IdentityProviderException
      */
     public function getUser($key, $secret, &$errorMessage)
     {
@@ -70,17 +72,21 @@ class FacebookAuth implements \AuthProvider
             return false;
         }
 
-        $token = $this->provider->getAccessToken('authorization_code', [
-            'code' => $_GET['code']
-        ]);
+        try {
+            $token = $this->provider->getAccessToken('authorization_code', [
+                'code' => $_GET['code']
+            ]);
 
-        $user = $this->provider->getResourceOwner($token);
+            $user = $this->provider->getResourceOwner($token);
 
-        return [
-            'name' => $user->getId(),
-            'realname' => $user->getName(),
-            'email' => $user->getEmail()
-        ];
+            return [
+                'name' => $user->getId(),
+                'realname' => $user->getName(),
+                'email' => $user->getEmail()
+            ];
+        } catch(\Exception $e) {
+            return false;
+        }
     }
 
     /**
