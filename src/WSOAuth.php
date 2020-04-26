@@ -77,7 +77,7 @@ class WSOAuth extends AuthProviderFramework
 
             $username = $user_info['name']; // Required.
             $realname = isset($user_info['realname']) ? $user_info['realname'] : '';
-            $email = isset($user_info['email']) ? $user_info['realname'] : '';
+            $email = isset($user_info['email']) ? $user_info['email'] : '';
 
             $user = User::newFromName($username);
             $user_id = $user->getId();
