@@ -16,6 +16,8 @@
 
 namespace AuthenticationProvider;
 
+use League\OAuth2\Client\Provider\Facebook;
+
 /**
  * Class FacebookAuth
  * @package AuthenticationProvider
@@ -23,7 +25,7 @@ namespace AuthenticationProvider;
 class FacebookAuth implements \AuthProvider
 {
     /**
-     * @var \League\OAuth2\Client\Provider\Facebook
+     * @var Facebook
      */
     private $provider;
 
@@ -32,7 +34,7 @@ class FacebookAuth implements \AuthProvider
      */
     public function __construct()
     {
-        $this->provider = new \League\OAuth2\Client\Provider\Facebook([
+        $this->provider = new Facebook([
             'clientId' => $GLOBALS['wgOAuthClientId'],
             'clientSecret' => $GLOBALS['wgOAuthClientSecret'],
             'redirectUri' => $GLOBALS['wgOAuthRedirectUri'],
@@ -50,6 +52,8 @@ class FacebookAuth implements \AuthProvider
         ]);
 
         $secret = $this->provider->getState();
+
+        return true;
     }
 
     /**
