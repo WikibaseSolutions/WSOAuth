@@ -2,6 +2,7 @@
   "name": "WSOAuth",
   "version": "2.3.2",
   "namemsg": "wsoauth-extensionname",
+  "url": "https://www.mediawiki.org/wiki/Extension:WSOAuth",
   "type": "other",
   "author": [
     "Marijn van Wezel [https://www.mediawiki.org/wiki/User:Xxmarijnw <xxmarijnw>]",
