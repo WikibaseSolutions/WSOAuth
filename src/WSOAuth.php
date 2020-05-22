@@ -53,7 +53,7 @@ class WSOAuth extends AuthProviderFramework
      */
     public function authenticate(&$id, &$username, &$realname, &$email, &$errorMessage)
     {
-        if($this->doesSessionVariableExist("request_key") && $this->doesSessionVariableExist("request_secret")) {
+        if ($this->doesSessionVariableExist("request_key") && $this->doesSessionVariableExist("request_secret")) {
             $key = $this->getSessionVariable("request_key");
             $secret = $this->getSessionVariable("request_secret");
 
@@ -81,9 +81,20 @@ class WSOAuth extends AuthProviderFramework
             $email = isset($user_info['email']) ? $user_info['email'] : '';
 
             $user = User::newFromName($username);
-            $user_id = $user->getId();
+            $user_id = $user->getId() === 0 ? null : $user->getId();
 
             $id = $user_id === 0 ? null : $user_id;
+
+            if ($user_id !== 0 && !$this->userLoggedInThroughOAuth($id)) {
+                // The user exists and has not logged in through OAuth
+                if ($GLOBALS['wgOAuthMigrateUsersByUsername'] === false) {
+                    $errorMessage = wfMessage('wsoauth-user-already-exists-message', $username)->plain();
+                    return false;
+                }
+
+                // Usurp the account
+                $this->saveExtraAttributes($user_id);
+            }
 
             return true;
         }
@@ -121,11 +132,33 @@ class WSOAuth extends AuthProviderFramework
     /**
      * @param $id
      * @return void
+     * @throws DBError
      * @internal
      */
     public function saveExtraAttributes($id)
     {
+        $dbr = wfGetDB(DB_MASTER);
+        $dbr->insert('wsoauth_users', ['wsoauth_user' => $id]);
+
         $this->auth_provider->saveExtraAttributes($id);
+    }
+
+    /**
+     * Returns true if and only if the given ID exists in the table `wsoauth_users`.
+     *
+     * @param int $id
+     * @return bool Whether or not this user was registered by WSOAuth.
+     */
+    private function userLoggedInThroughOAuth($id)
+    {
+        if (!is_int($id)) throw new MWException("Given user ID is not an integer.");
+
+        $dbr = wfGetDB(DB_REPLICA);
+        return $dbr->numRows($dbr->select(
+            'wsoauth_users',
+            ['wsoauth_user'],
+            'wsoauth_user = ' . $id
+        )) === 1;
     }
 
     /**
@@ -185,5 +218,24 @@ class WSOAuth extends AuthProviderFramework
         }
 
         return true;
+    }
+
+    /**
+     * Fired when MediaWiki is updated to allow WSOAuth to register updates for the database schema.
+     *
+     * @param DatabaseUpdater $updater
+     * @internal
+     */
+    public static function onLoadExtensionSchemaUpdates(DatabaseUpdater $updater)
+    {
+        $directory = $GLOBALS['wgExtensionDirectory'] . '/WSOAuth/sql';
+        $type = $updater->getDB()->getType();
+        $sql_file = sprintf("%s/%s/table_wsoauth_users.sql", $directory, $type);
+
+        if (!file_exists($sql_file)) {
+            throw new MWException("WSOAuth does not support database type `$type`.");
+        }
+
+        $updater->addExtensionTable('wsoauth_users', $sql_file);
     }
 }

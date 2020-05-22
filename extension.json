@@ -1,6 +1,6 @@
 {
   "name": "WSOAuth",
-  "version": "2.3.2",
+  "version": "3.0",
   "namemsg": "wsoauth-extensionname",
   "url": "https://www.mediawiki.org/wiki/Extension:WSOAuth",
   "type": "other",
@@ -34,7 +34,8 @@
     "Exception\\": "src/Exception/"
   },
   "Hooks": {
-    "PluggableAuthPopulateGroups": "WSOAuth::onPluggableAuthPopulateGroups"
+    "PluggableAuthPopulateGroups": "WSOAuth::onPluggableAuthPopulateGroups",
+    "LoadExtensionSchemaUpdates": "WSOAuth::onLoadExtensionSchemaUpdates"
   },
   "config": {
     "PluggableAuth_Class": {
@@ -72,6 +73,10 @@
     "OAuthAutoPopulateGroups": {
       "value": [],
       "descriptionmsg": "wsoauth-auto-populate-groups-desc"
+    },
+    "OAuthMigrateUsersByUsername": {
+      "value": false,
+      "descriptionmsg": "wsoauth-migrate-users-by-username-desc"
     }
   },
   "load_composer_autoloader": true,

@@ -21,5 +21,7 @@
   "wsoauth-unknown-auth-provider-class-exception-message": "OAuth-provider class niet gevonden of geladen",
   "wsoauth-unknown-auth-provider-exception-message": "Onbekende OAuth-provider ($1)",
   "wsoauth-invalid-auth-provider-class-exception-message": "De OAuth-provider class is geen implementatie van AuthProvider",
-  "wsoauth-initiate-login-failure": "Kan communicatie met OAuth-provider niet starten."
+  "wsoauth-initiate-login-failure": "Kan communicatie met OAuth-provider niet starten.",
+  "wsoauth-migrate-users-by-username-desc": "Het al dan niet toestaan van toe-eigening van bestaande accounts gebaseerd op gebruikersnaam.",
+  "wsoauth-user-already-exists-message": "De gebruikersnaam \"$1\" is al bezet."
 }
