@@ -81,11 +81,9 @@ class WSOAuth extends AuthProviderFramework
             $email = isset($user_info['email']) ? $user_info['email'] : '';
 
             $user = User::newFromName($username);
-            $user_id = $user->getId() === 0 ? null : $user->getId();
+            $user_id = $user->idForName();
 
-            $id = $user_id === 0 ? null : $user_id;
-
-            if ($user_id !== 0 && !$this->userLoggedInThroughOAuth($id)) {
+            if (!is_null($user_id) && $user_id > 0 && !$this->userLoggedInThroughOAuth($user_id)) {
                 // The user exists and has not logged in through OAuth
                 if ($GLOBALS['wgOAuthMigrateUsersByUsername'] === false) {
                     $errorMessage = wfMessage('wsoauth-user-already-exists-message', $username)->plain();
