@@ -1,5 +1,7 @@
 # WSOAuth
 
+**Note:** This extension was moved to [Gerrit](https://github.com/WikibaseSolutions/WSOAuth/commits/master).
+
 ![PHP Lint](https://github.com/WikibaseSolutions/WSOAuth/workflows/PHP%20Lint/badge.svg)
 
 The **WSOAuth** extension enables you to delegate authentication to an OAuth provider. It provides a layer on top of PluggableAuth to allow authentication via a number of OAuth providers.
